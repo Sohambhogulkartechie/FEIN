@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FEIN!</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #8b0000; /* Dark red background */
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      .navbar {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 60px;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #8b0000;
+        animation: slideIn 1s forwards;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      @keyframes slideIn {
+        from {
+          left: -100%;
+        }
+        to {
+          left: 0;
+        }
+      }
+
+      .buttons-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 100px;
+      }
+
+      .button-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        animation: slideUp 1s ease-out;
+      }
+
+      .circle-button {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s;
+      }
+
+      .circle-button:active {
+        transform: scale(0.95);
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">PRESS ME</div>
+    <div class="buttons-grid">
+      <div class="button-container">
+        <button
+          class="circle-button"
+          id="soundButton1"
+          style="background-image: url('o.png')"
+        ></button>
+      </div>
+      <div class="button-container">
+        <button
+          class="circle-button"
+          id="soundButton2"
+          style="background-image: url('q.png')"
+        ></button>
+      </div>
+      <div class="button-container">
+        <button
+          class="circle-button"
+          id="soundButton3"
+          style="background-image: url('p.png')"
+        ></button>
+      </div>
+      <div class="button-container">
+        <button
+          class="circle-button"
+          id="soundButton4"
+          style="background-image: url('k.png')"
+        ></button>
+      </div>
+      <div class="button-container">
+        <button
+          class="circle-button"
+          id="soundButton5"
+          style="background-image: url('m.png')"
+        ></button>
+      </div>
+      <div class="button-container">
+        <button
+          class="circle-button"
+          id="soundButton6"
+          style="background-image: url('n.png')"
+        ></button>
+      </div>
+    </div>
+
+    <audio id="audio1" src="eagle.mp3"></audio>
+    <audio id="audio2" src="e.m4a"></audio>
+    <audio id="audio3" src="f.m4a"></audio>
+    <audio id="audio4" src="i.m4a"></audio>
+    <audio id="audio5" src="n.m4a"></audio>
+    <audio id="audio6" src="t.m4a"></audio>
+
+    <script>
+      const buttons = [
+        { id: "soundButton1", audioId: "audio1" },
+        { id: "soundButton2", audioId: "audio2" },
+        { id: "soundButton3", audioId: "audio3" },
+        { id: "soundButton4", audioId: "audio4" },
+        { id: "soundButton5", audioId: "audio5" },
+        { id: "soundButton6", audioId: "audio6" },
+      ];
+
+      buttons.forEach((button) => {
+        document.getElementById(button.id).addEventListener("click", () => {
+          const audio = document.getElementById(button.audioId);
+          audio.currentTime = 0;
+          audio.play();
+        });
+      });
+    </script>
+  </body>
+</html>
